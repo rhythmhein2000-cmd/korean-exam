@@ -3,307 +3,555 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>연세 한국어 1급 종합 평가 시험 (Online Exam)</title>
+  <title>Yonsei Korean 1 Final Examination (연세 한국어 1급 종합 평가)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1a56db;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #0ea5e9;
       --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text: #1e293b;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
       --border: #e2e8f0;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
     }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
       background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      margin: 0;
-      padding: 20px;
+      color: var(--text-main);
+      line-height: 1.65;
+      padding-bottom: 60px;
     }
+
+    /* Container */
     .container {
-      max-width: 850px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+      max-width: 860px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
-    .exam-header {
+
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 35px 30px;
+      border-radius: 20px;
       text-align: center;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 15px;
+      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
       margin-bottom: 25px;
     }
-    .exam-header h1 {
-      font-size: 22px;
-      margin: 0 0 8px 0;
-      color: #0f172a;
+    .hero-banner h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
     }
-    .badge {
-      display: inline-block;
-      background: #e0e7ff;
-      color: var(--primary);
-      font-weight: bold;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 13px;
+    .hero-banner p {
+      font-size: 15px;
+      opacity: 0.9;
     }
-    .part-title {
-      font-size: 17px;
-      font-weight: bold;
-      background-color: #f1f5f9;
-      border-left: 5px solid var(--primary);
-      padding: 8px 12px;
-      margin: 30px 0 15px 0;
-      border-radius: 0 6px 6px 0;
-    }
-    .direction {
-      font-weight: 600;
-      color: #475569;
-      margin-bottom: 15px;
-    }
-    .q-card {
-      margin-bottom: 20px;
-      padding: 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
-    .q-text {
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .passage {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      padding: 14px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      font-size: 14.5px;
-    }
-    .options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 600px) {
-      .options { grid-template-columns: 1fr; }
-    }
-    label {
+    .meta-tags {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #f8fafc;
-      padding: 8px 12px;
-      border-radius: 6px;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    .meta-tag {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Card Box */
+    .exam-card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow);
       border: 1px solid var(--border);
-      cursor: pointer;
+      margin-bottom: 24px;
     }
-    label:hover {
-      background: #f1f5f9;
+
+    /* Login / Registration Screen */
+    #screen-login {
+      max-width: 520px;
+      margin: 0 auto;
     }
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 14px;
-      margin-top: 5px;
+    .form-group {
+      margin-bottom: 20px;
     }
-    .btn-submit {
+    .form-group label {
       display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: #fafafa;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+    .btn-start {
       width: 100%;
       background: var(--primary);
       color: #fff;
       border: none;
-      padding: 14px;
-      font-size: 17px;
-      font-weight: bold;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .btn-start:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* Floating Status Bar */
+    #exam-area { display: none; }
+    .sticky-bar {
+      position: sticky;
+      top: 15px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .badge-pill {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 10px;
       border-radius: 8px;
+    }
+
+    /* Sections */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 35px 0 15px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-head h2 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    .section-pts {
+      background: #e2e8f0;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .instruction {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #475569;
+      margin: 18px 0 10px 0;
+    }
+
+    /* Question Styles */
+    .q-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+    .q-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+    .q-pts {
+      color: var(--primary);
+      font-size: 13px;
+      margin-left: 4px;
+    }
+
+    /* Multiple Choice */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (max-width: 650px) {
+      .options-grid { grid-template-columns: 1fr; }
+    }
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 14.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .opt-label:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .opt-label input[type="radio"] {
+      accent-color: var(--primary);
+      width: 17px;
+      height: 17px;
+    }
+
+    /* Short Answer Input & Textarea */
+    input.text-ans, textarea.text-ans {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-family: inherit;
+      background: #fcfcfc;
+      margin-top: 4px;
+    }
+    input.text-ans:focus, textarea.text-ans:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+    }
+
+    /* Reading Passage */
+    .passage-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 20px;
+      border-radius: 0 10px 10px 0;
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      color: #1e293b;
+    }
+
+    /* Result Dashboard */
+    #result-dashboard {
+      display: none;
+      background: #ffffff;
+      border: 2px solid var(--success);
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 25px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.1);
+    }
+    .score-banner {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--success);
+      margin: 10px 0;
+    }
+
+    /* Correct & Incorrect Styles */
+    .is-correct {
+      border-color: var(--success) !important;
+      background-color: var(--success-bg) !important;
+    }
+    .is-wrong {
+      border-color: var(--danger) !important;
+      background-color: var(--danger-bg) !important;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      border: none;
+      padding: 18px;
+      font-size: 18px;
+      font-weight: 800;
+      border-radius: 12px;
       cursor: pointer;
       margin-top: 30px;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s;
     }
     .btn-submit:hover {
-      background: #1d4ed8;
-    }
-    #result-box {
-      display: none;
-      background: #ecfdf5;
-      border: 2px solid #10b981;
-      color: #065f46;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .correct {
-      border-color: #10b981 !important;
-      background-color: #f0fdf4 !important;
-    }
-    .wrong {
-      border-color: #ef4444 !important;
-      background-color: #fef2f2 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <div class="exam-header">
+  <!-- Top Banner -->
+  <div class="hero-banner">
     <h1>연세 한국어 1급 종합 평가 시험</h1>
-    <div class="badge">총점: 200점 | 제한 시간: 90분</div>
+    <p>Yonsei Korean Level 1 Final Comprehensive Examination</p>
+    <div class="meta-tags">
+      <span class="meta-tag">총점: 200점 만점</span>
+      <span class="meta-tag">소요 시간: 90분</span>
+      <span class="meta-tag">수준: 1급 (초급)</span>
+    </div>
   </div>
 
-  <div id="result-box">
-    <h2 id="result-score" style="margin:0 0 10px 0;"></h2>
-    <div id="result-detail"></div>
+  <!-- STEP 1: Registration Screen -->
+  <div id="screen-login" class="exam-card">
+    <h2 style="font-size: 20px; font-weight:800; text-align:center; margin-bottom: 20px; color:#1e293b;">
+      응시자 정보 등록 (Student Verification)
+    </h2>
+    <div class="form-group">
+      <label for="std-id">학생 번호 (Student ID) *</label>
+      <input type="text" id="std-id" placeholder="예: YS-2026-001" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="std-name">성명 (Full Name) *</label>
+      <input type="text" id="std-name" placeholder="예: Sa Hein Thet Aung" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="std-email">이메일 (Email Address) *</label>
+      <input type="email" id="std-email" placeholder="student@example.com" autocomplete="off">
+    </div>
+    <button type="button" class="btn-start" onclick="startPortal()">시험 시작하기 (Start Exam) ➔</button>
   </div>
 
-  <form id="examForm">
-    <!-- Part 1 -->
-    <div class="part-title">[Part 1] 문법 및 어휘 (Grammar & Vocabulary) - 60점</div>
-    <div class="direction">[1-10] 빈칸에 가장 알맞은 것을 고르십시오. (각 3점)</div>
-
-    <div class="q-card" id="card-q1">
-      <div class="q-text">1. 저는 미국 사람_______. 회사원입니다.</div>
-      <div class="options">
-        <label><input type="radio" name="q1" value="1"> ① 입니다</label>
-        <label><input type="radio" name="q1" value="2"> ② 아닙니다</label>
-        <label><input type="radio" name="q1" value="3"> ③ 입니까</label>
-        <label><input type="radio" name="q1" value="4"> ④ 없습니다</label>
+  <!-- STEP 2: Active Exam Area -->
+  <div id="exam-area">
+    <!-- Sticky Status Bar -->
+    <div class="sticky-bar">
+      <div>
+        <span class="badge-pill" id="disp-id"></span>
+        <span style="margin-left: 8px;" id="disp-name"></span>
       </div>
+      <div style="color: var(--primary);">CBT Mode: Online</div>
     </div>
 
-    <div class="q-card" id="card-q2">
-      <div class="q-text">2. 가: 저것이 교실 시계예요? &nbsp;&nbsp; 나: 아니요, 교실 시계_______ 아니에요. 제 시계예요.</div>
-      <div class="options">
-        <label><input type="radio" name="q2" value="1"> ① 에</label>
-        <label><input type="radio" name="q2" value="2"> ② 가</label>
-        <label><input type="radio" name="q2" value="3"> ③ 은</label>
-        <label><input type="radio" name="q2" value="4"> ④ 를</label>
+    <!-- Result Display -->
+    <div id="result-dashboard">
+      <h3 style="color:#0f172a; margin-bottom:5px;">시험 채점 결과 (Evaluation Summary)</h3>
+      <div class="score-banner" id="res-score"></div>
+      <p id="res-detail" style="font-size: 15px; color:#334155;"></p>
+    </div>
+
+    <form id="examForm">
+      <!-- ================= PART 1 ================= -->
+      <div class="section-head">
+        <h2>[Part 1] 문법 및 어휘 (Grammar & Vocabulary)</h2>
+        <span class="section-pts">총 60점</span>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q3">
-      <div class="q-text">3. 어제 도서관_______ 책을 읽었습니다. 그리고 친구를 만났습니다.</div>
-      <div class="options">
-        <label><input type="radio" name="q3" value="1"> ① 에</label>
-        <label><input type="radio" name="q3" value="2"> ② 에서</label>
-        <label><input type="radio" name="q3" value="3"> ③ 에게</label>
-        <label><input type="radio" name="q3" value="4"> ④ 로</label>
+      <div class="instruction">[1-10] 빈칸에 가장 알맞은 것을 고르십시오. (각 3점, 총 30점)</div>
+
+      <div class="q-card" id="card-q1">
+        <div class="q-title">1. 저는 미국 사람_______. 회사원입니다. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q1" value="1"> ① 입니다</label>
+          <label class="opt-label"><input type="radio" name="q1" value="2"> ② 아닙니다</label>
+          <label class="opt-label"><input type="radio" name="q1" value="3"> ③ 입니까</label>
+          <label class="opt-label"><input type="radio" name="q1" value="4"> ④ 없습니다</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q4">
-      <div class="q-text">4. 날씨가 춥습니다. 따뜻한 차를 마시_______ 싶습니다.</div>
-      <div class="options">
-        <label><input type="radio" name="q4" value="1"> ① 고</label>
-        <label><input type="radio" name="q4" value="2"> ② 며</label>
-        <label><input type="radio" name="q4" value="3"> ③ 지</label>
-        <label><input type="radio" name="q4" value="4"> ④ 면</label>
+      <div class="q-card" id="card-q2">
+        <div class="q-title">2. 가: 저것이 교실 시계예요? &nbsp;&nbsp; 나: 아니요, 교실 시계_______ 아니에요. 제 시계예요. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q2" value="1"> ① 에</label>
+          <label class="opt-label"><input type="radio" name="q2" value="2"> ② 가</label>
+          <label class="opt-label"><input type="radio" name="q2" value="3"> ③ 은</label>
+          <label class="opt-label"><input type="radio" name="q2" value="4"> ④ 를</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q5">
-      <div class="q-text">5. 가: 점심에 뭐 먹을까요? &nbsp;&nbsp; 나: 비빔밥을 _______.</div>
-      <div class="options">
-        <label><input type="radio" name="q5" value="1"> ① 먹습니까</label>
-        <label><input type="radio" name="q5" value="2"> ② 먹읍시다</label>
-        <label><input type="radio" name="q5" value="3"> ③ 먹으십시오</label>
-        <label><input type="radio" name="q5" value="4"> ④ 먹고 있습니다</label>
+      <div class="q-card" id="card-q3">
+        <div class="q-title">3. 어제 도서관_______ 책을 읽었습니다. 그리고 친구를 만났습니다. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q3" value="1"> ① 에</label>
+          <label class="opt-label"><input type="radio" name="q3" value="2"> ② 에서</label>
+          <label class="opt-label"><input type="radio" name="q3" value="3"> ③ 에게</label>
+          <label class="opt-label"><input type="radio" name="q3" value="4"> ④ 로</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q6">
-      <div class="q-text">6. 가: 오늘 음악회에 갈 수 있어요? &nbsp;&nbsp; 나: 미안해요. 시험이 있어서 갈 수 _______.</div>
-      <div class="options">
-        <label><input type="radio" name="q6" value="1"> ① 없어요</label>
-        <label><input type="radio" name="q6" value="2"> ② 싫어요</label>
-        <label><input type="radio" name="q6" value="3"> ③ 알아요</label>
-        <label><input type="radio" name="q6" value="4"> ④ 했어요</label>
+      <div class="q-card" id="card-q4">
+        <div class="q-title">4. 날씨가 춥습니다. 따뜻한 차를 마시_______ 싶습니다. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q4" value="1"> ① 고</label>
+          <label class="opt-label"><input type="radio" name="q4" value="2"> ② 며</label>
+          <label class="opt-label"><input type="radio" name="q4" value="3"> ③ 지</label>
+          <label class="opt-label"><input type="radio" name="q4" value="4"> ④ 면</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q7">
-      <div class="q-text">7. 어제 길에서 음악을 들으면서 걸었습니다. 날씨가 정말 _______군요.</div>
-      <div class="options">
-        <label><input type="radio" name="q7" value="1"> ① 춥</label>
-        <label><input type="radio" name="q7" value="2"> ② 추웠</label>
-        <label><input type="radio" name="q7" value="3"> ③ 춥겠</label>
-        <label><input type="radio" name="q7" value="4"> ④ 추우</label>
+      <div class="q-card" id="card-q5">
+        <div class="q-title">5. 가: 점심에 뭐 먹을까요? &nbsp;&nbsp; 나: 비빔밥을 _______. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q5" value="1"> ① 먹습니까</label>
+          <label class="opt-label"><input type="radio" name="q5" value="2"> ② 먹읍시다</label>
+          <label class="opt-label"><input type="radio" name="q5" value="3"> ③ 먹으십시오</label>
+          <label class="opt-label"><input type="radio" name="q5" value="4"> ④ 먹고 있습니다</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q8">
-      <div class="q-text">8. 한국 음식 중에서 불고기를 _______ 좋아해요.</div>
-      <div class="options">
-        <label><input type="radio" name="q8" value="1"> ① 아주</label>
-        <label><input type="radio" name="q8" value="2"> ② 더</label>
-        <label><input type="radio" name="q8" value="3"> ③ 제일</label>
-        <label><input type="radio" name="q8" value="4"> ④ 조금</label>
+      <div class="q-card" id="card-q6">
+        <div class="q-title">6. 가: 오늘 음악회에 갈 수 있어요? &nbsp;&nbsp; 나: 미안해요. 시험이 있어서 갈 수 _______. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q6" value="1"> ① 없어요</label>
+          <label class="opt-label"><input type="radio" name="q6" value="2"> ② 싫어요</label>
+          <label class="opt-label"><input type="radio" name="q6" value="3"> ③ 알아요</label>
+          <label class="opt-label"><input type="radio" name="q6" value="4"> ④ 했어요</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q9">
-      <div class="q-text">9. 지하철을 타기 _______ 교통카드를 충전했습니다.</div>
-      <div class="options">
-        <label><input type="radio" name="q9" value="1"> ① 전에</label>
-        <label><input type="radio" name="q9" value="2"> ② 후에</label>
-        <label><input type="radio" name="q9" value="3"> ③ 동안</label>
-        <label><input type="radio" name="q9" value="4"> ④ 때</label>
+      <div class="q-card" id="card-q7">
+        <div class="q-title">7. 어제 길에서 음악을 들으면서 걸었습니다. 날씨가 정말 _______군요. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q7" value="1"> ① 춥</label>
+          <label class="opt-label"><input type="radio" name="q7" value="2"> ② 추웠</label>
+          <label class="opt-label"><input type="radio" name="q7" value="3"> ③ 춥겠</label>
+          <label class="opt-label"><input type="radio" name="q7" value="4"> ④ 추우</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q10">
-      <div class="q-text">10. 가: 이 가방을 포장해 드릴까요? &nbsp;&nbsp; 나: 네, 예쁘게 포장해 _______.</div>
-      <div class="options">
-        <label><input type="radio" name="q10" value="1"> ① 주세요</label>
-        <label><input type="radio" name="q10" value="2"> ② 보세요</label>
-        <label><input type="radio" name="q10" value="3"> ③ 마세요</label>
-        <label><input type="radio" name="q10" value="4"> ④ 오세요</label>
+      <div class="q-card" id="card-q8">
+        <div class="q-title">8. 한국 음식 중에서 불고기를 _______ 좋아해요. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q8" value="1"> ① 아주</label>
+          <label class="opt-label"><input type="radio" name="q8" value="2"> ② 더</label>
+          <label class="opt-label"><input type="radio" name="q8" value="3"> ③ 제일</label>
+          <label class="opt-label"><input type="radio" name="q8" value="4"> ④ 조금</label>
+        </div>
       </div>
-    </div>
 
-    <div class="direction">[11-15] 괄호 안의 단어를 알맞은 형태로 바꾸어 입력하십시오. (각 3점)</div>
-
-    <div class="q-card" id="card-q11">
-      <div class="q-text">11. 저는 매일 아침 라디오를 (듣다) __________________________. [-어요]</div>
-      <input type="text" name="q11" placeholder="정답 입력">
-    </div>
-
-    <div class="q-card" id="card-q12">
-      <div class="q-text">12. 겨울에는 날씨가 많이 (춥다) ____________________________. [-어요]</div>
-      <input type="text" name="q12" placeholder="정답 입력">
-    </div>
-
-    <div class="q-card" id="card-q13">
-      <div class="q-text">13. 모르는 단어는 사전을 (찾다) ________________________ 보세요. [-어/아 보다]</div>
-      <input type="text" name="q13" placeholder="정답 입력">
-    </div>
-
-    <div class="q-card" id="card-q14">
-      <div class="q-text">14. 노래를 아주 잘 (부르다) ______________________________. [-어요]</div>
-      <input type="text" name="q14" placeholder="정답 입력">
-    </div>
-
-    <div class="q-card" id="card-q15">
-      <div class="q-text">15. 하늘이 파랗고 정말 (그렇다) ____________________________. [-어요]</div>
-      <input type="text" name="q15" placeholder="정답 입력">
-    </div>
-
-    <div class="direction">[16-20] 빈칸에 가장 알맞은 대화를 고르십시오. (각 3점)</div>
-
-    <div class="q-card" id="card-q16">
-      <div class="q-text">16. 가: 민수 씨는 주말에 보통 어디에 있어요? &nbsp;&nbsp; 나: 저는 주말에 보통 __________________.</div>
-      <div class="options">
-        <label><input type="radio" name="q16" value="1"> ① 집으로 쉬어요</label>
-        <label><input type="radio" name="q16" value="2"> ② 집에서 일해요</label>
-        <label><input type="radio" name="q16" value="3"> ③ 집에 일해요</label>
-        <label><input type="radio" name="q16" value="4"> ④ 집까지 있어요</label>
+      <div class="q-card" id="card-q9">
+        <div class="q-title">9. 지하철을 타기 _______ 교통카드를 충전했습니다. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q9" value="1"> ① 전에</label>
+          <label class="opt-label"><input type="radio" name="q9" value="2"> ② 후에</label>
+          <label class="opt-label"><input type="radio" name="q9" value="3"> ③ 동안</label>
+          <label class="opt-label"><input type="radio" name="q9" value="4"> ④ 때</label>
+        </div>
       </div>
-    </div>
 
-    <div class="q-card" id="card-q17">
+      <div class="q-card" id="card-q10">
+        <div class="q-title">10. 가: 이 가방을 포장해 드릴까요? &nbsp;&nbsp; 나: 네, 예쁘게 포장해 _______. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q10" value="1"> ① 주세요</label>
+          <label class="opt-label"><input type="radio" name="q10" value="2"> ② 보세요</label>
+          <label class="opt-label"><input type="radio" name="q10" value="3"> ③ 마세요</label>
+          <label class="opt-label"><input type="radio" name="q10" value="4"> ④ 오세요</label>
+        </div>
+      </div>
+
+      <div class="instruction">[11-15] 괄호 안의 단어를 문맥에 맞게 바꾸어 입력하십시오. (각 3점, 총 15점)</div>
+
+      <div class="q-card" id="card-q11">
+        <div class="q-title">11. 저는 매일 아침 라디오를 (듣다) __________________________. [-어요] <span class="q-pts">(3점)</span></div>
+        <input type="text" class="text-ans" name="q11" placeholder="정답 입력">
+      </div>
+
+      <div class="q-card" id="card-q12">
+        <div class="q-title">12. 겨울에는 날씨가 많이 (춥다) ____________________________. [-어요] <span class="q-pts">(3점)</span></div>
+        <input type="text" class="text-ans" name="q12" placeholder="정답 입력">
+      </div>
+
+      <div class="q-card" id="card-q13">
+        <div class="q-title">13. 모르는 단어는 사전을 (찾다) ________________________ 보세요. [-어/아 보다] <span class="q-pts">(3점)</span></div>
+        <input type="text" class="text-ans" name="q13" placeholder="정답 입력">
+      </div>
+
+      <div class="q-card" id="card-q14">
+        <div class="q-title">14. 노래를 아주 잘 (부르다) ______________________________. [-어요] <span class="q-pts">(3점)</span></div>
+        <input type="text" class="text-ans" name="q14" placeholder="정답 입력">
+      </div>
+
+      <div class="q-card" id="card-q15">
+        <div class="q-title">15. 하늘이 파랗고 정말 (그렇다) ____________________________. [-어요] <span class="q-pts">(3점)</span></div>
+        <input type="text" class="text-ans" name="q15" placeholder="정답 입력">
+      </div>
+
+      <div class="instruction">[16-20] 빈칸에 가장 알맞은 대화를 고르십시오. (각 3점, 총 15점)</div>
+
+      <div class="q-card" id="card-q16">
+        <div class="q-title">16. 가: 민수 씨는 주말에 보통 어디에 있어요? &nbsp;&nbsp; 나: 저는 주말에 보통 __________________. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q16" value="1"> ① 집으로 쉬어요</label>
+          <label class="opt-label"><input type="radio" name="q16" value="2"> ② 집에서 일해요</label>
+          <label class="opt-label"><input type="radio" name="q16" value="3"> ③ 집에 일해요</label>
+          <label class="opt-label"><input type="radio" name="q16" value="4"> ④ 집까지 있어요</label>
+        </div>
+      </div>
+
+      <div class="q-card" id="card-q17">
+        <div class="q-title">17. 가: 여기 미술관 안에서 사진을 찍어도 돼요? &nbsp;&nbsp; 나: 아니요, 사진을 __________________. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q17" value="1"> ① 찍으세요</label>
+          <label class="opt-label"><input type="radio" name="q17" value="2"> ② 찍고 싶어요</label>
+          <label class="opt-label"><input type="radio" name="q17" value="3"> ③ 찍지 마세요</label>
+          <label class="opt-label"><input type="radio" name="q17" value="4"> ④ 찍을 수 있어요</label>
+        </div>
+      </div>
+
+      <div class="q-card" id="card-q18">
+        <div class="q-title">18. 가: 비행기를 탈까요, 기차를 탈까요? &nbsp;&nbsp; 나: __________________ 더 빠르니까 비행기를 타세요. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q18" value="1"> ① 비행기보다 기차가</label>
+          <label class="opt-label"><input type="radio" name="q18" value="2"> ② 기차보다 비행기가</label>
+          <label class="opt-label"><input type="radio" name="q18" value="3"> ③ 비행기하고 기차가</label>
+          <label class="opt-label"><input type="radio" name="q18" value="4"> ④ 기차에서 비행기까지</label>
+        </div>
+      </div>
+
+      <div class="q-card" id="card-q19">
+        <div class="q-title">19. 가: 한국어를 얼마 동안 배웠어요? &nbsp;&nbsp; 나: 한국에 온 지 벌써 __________________. <span class="q-pts">(3점)</span></div>
+        <div class="options-grid">
+          <label class="opt-label"><input type="radio" name="q19" value="1"> ① 3달이 되었어요</label>
+          <label class="opt-label"><input type="radio" name="q19" value="2"> ② 3달 동안 되었어요</label>
+          <label class="opt-label"><input type="radio" name="q19" value="3"> ③ 3달 전에 살았어요</label>
+          <label class="opt-label"><input type="radio" name="q19" v="card-q17">
       <div class="q-text">17. 가: 여기 미술관 안에서 사진을 찍어도 돼요? &nbsp;&nbsp; 나: 아니요, 사진을 __________________.</div>
       <div class="options">
         <label><input type="radio" name="q17" value="1"> ① 찍으세요</label>
