@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연세 한국어 1급 종합 평가 시험 (Online Exam)</title>
+  <style>
+    :root {
+      --primary: #1a56db;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --border: #e2e8f0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+    .exam-header {
+      text-align: center;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 15px;
+      margin-bottom: 25px;
+    }
+    .exam-header h1 {
+      font-size: 22px;
+      margin: 0 0 8px 0;
+      color: #0f172a;
+    }
+    .badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: var(--primary);
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+    .part-title {
+      font-size: 17px;
+      font-weight: bold;
+      background-color: #f1f5f9;
+      border-left: 5px solid var(--primary);
+      padding: 8px 12px;
+      margin: 30px 0 15px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .direction {
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 15px;
+    }
+    .q-card {
+      margin-bottom: 20px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .q-text {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .passage {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 14.5px;
+    }
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 600px) {
+      .options { grid-template-columns: 1fr; }
+    }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    label:hover {
+      background: #f1f5f9;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .btn-submit {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+    }
+    .btn-submit:hover {
+      background: #1d4ed8;
+    }
+    #result-box {
+      display: none;
+      background: #ecfdf5;
+      border: 2px solid #10b981;
+      color: #065f46;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .correct {
+      border-color: #10b981 !important;
+      background-color: #f0fdf4 !important;
+    }
+    .wrong {
+      border-color: #ef4444 !important;
+      background-color: #fef2f2 !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="exam-header">
+    <h1>연세 한국어 1급 종합 평가 시험</h1>
+    <div class="badge">총점: 200점 | 제한 시간: 90분</div>
+  </div>
+
+  <div id="result-box">
+    <h2 id="result-score" style="margin:0 0 10px 0;"></h2>
+    <div id="result-detail"></div>
+  </div>
+
+  <form id="examForm">
+    <!-- Part 1 -->
+    <div class="part-title">[Part 1] 문법 및 어휘 (Grammar & Vocabulary) - 60점</div>
+    <div class="direction">[1-10] 빈칸에 가장 알맞은 것을 고르십시오. (각 3점)</div>
+
+    <div class="q-card" id="card-q1">
+      <div class="q-text">1. 저는 미국 사람_______. 회사원입니다.</div>
+      <div class="options">
+        <label><input type="radio" name="q1" value="1"> ① 입니다</label>
+        <label><input type="radio" name="q1" value="2"> ② 아닙니다</label>
+        <label><input type="radio" name="q1" value="3"> ③ 입니까</label>
+        <label><input type="radio" name="q1" value="4"> ④ 없습니다</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q2">
+      <div class="q-text">2. 가: 저것이 교실 시계예요? &nbsp;&nbsp; 나: 아니요, 교실 시계_______ 아니에요. 제 시계예요.</div>
+      <div class="options">
+        <label><input type="radio" name="q2" value="1"> ① 에</label>
+        <label><input type="radio" name="q2" value="2"> ② 가</label>
+        <label><input type="radio" name="q2" value="3"> ③ 은</label>
+        <label><input type="radio" name="q2" value="4"> ④ 를</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q3">
+      <div class="q-text">3. 어제 도서관_______ 책을 읽었습니다. 그리고 친구를 만났습니다.</div>
+      <div class="options">
+        <label><input type="radio" name="q3" value="1"> ① 에</label>
+        <label><input type="radio" name="q3" value="2"> ② 에서</label>
+        <label><input type="radio" name="q3" value="3"> ③ 에게</label>
+        <label><input type="radio" name="q3" value="4"> ④ 로</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q4">
+      <div class="q-text">4. 날씨가 춥습니다. 따뜻한 차를 마시_______ 싶습니다.</div>
+      <div class="options">
+        <label><input type="radio" name="q4" value="1"> ① 고</label>
+        <label><input type="radio" name="q4" value="2"> ② 며</label>
+        <label><input type="radio" name="q4" value="3"> ③ 지</label>
+        <label><input type="radio" name="q4" value="4"> ④ 면</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q5">
+      <div class="q-text">5. 가: 점심에 뭐 먹을까요? &nbsp;&nbsp; 나: 비빔밥을 _______.</div>
+      <div class="options">
+        <label><input type="radio" name="q5" value="1"> ① 먹습니까</label>
+        <label><input type="radio" name="q5" value="2"> ② 먹읍시다</label>
+        <label><input type="radio" name="q5" value="3"> ③ 먹으십시오</label>
+        <label><input type="radio" name="q5" value="4"> ④ 먹고 있습니다</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q6">
+      <div class="q-text">6. 가: 오늘 음악회에 갈 수 있어요? &nbsp;&nbsp; 나: 미안해요. 시험이 있어서 갈 수 _______.</div>
+      <div class="options">
+        <label><input type="radio" name="q6" value="1"> ① 없어요</label>
+        <label><input type="radio" name="q6" value="2"> ② 싫어요</label>
+        <label><input type="radio" name="q6" value="3"> ③ 알아요</label>
+        <label><input type="radio" name="q6" value="4"> ④ 했어요</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q7">
+      <div class="q-text">7. 어제 길에서 음악을 들으면서 걸었습니다. 날씨가 정말 _______군요.</div>
+      <div class="options">
+        <label><input type="radio" name="q7" value="1"> ① 춥</label>
+        <label><input type="radio" name="q7" value="2"> ② 추웠</label>
+        <label><input type="radio" name="q7" value="3"> ③ 춥겠</label>
+        <label><input type="radio" name="q7" value="4"> ④ 추우</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q8">
+      <div class="q-text">8. 한국 음식 중에서 불고기를 _______ 좋아해요.</div>
+      <div class="options">
+        <label><input type="radio" name="q8" value="1"> ① 아주</label>
+        <label><input type="radio" name="q8" value="2"> ② 더</label>
+        <label><input type="radio" name="q8" value="3"> ③ 제일</label>
+        <label><input type="radio" name="q8" value="4"> ④ 조금</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q9">
+      <div class="q-text">9. 지하철을 타기 _______ 교통카드를 충전했습니다.</div>
+      <div class="options">
+        <label><input type="radio" name="q9" value="1"> ① 전에</label>
+        <label><input type="radio" name="q9" value="2"> ② 후에</label>
+        <label><input type="radio" name="q9" value="3"> ③ 동안</label>
+        <label><input type="radio" name="q9" value="4"> ④ 때</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q10">
+      <div class="q-text">10. 가: 이 가방을 포장해 드릴까요? &nbsp;&nbsp; 나: 네, 예쁘게 포장해 _______.</div>
+      <div class="options">
+        <label><input type="radio" name="q10" value="1"> ① 주세요</label>
+        <label><input type="radio" name="q10" value="2"> ② 보세요</label>
+        <label><input type="radio" name="q10" value="3"> ③ 마세요</label>
+        <label><input type="radio" name="q10" value="4"> ④ 오세요</label>
+      </div>
+    </div>
+
+    <div class="direction">[11-15] 괄호 안의 단어를 알맞은 형태로 바꾸어 입력하십시오. (각 3점)</div>
+
+    <div class="q-card" id="card-q11">
+      <div class="q-text">11. 저는 매일 아침 라디오를 (듣다) __________________________. [-어요]</div>
+      <input type="text" name="q11" placeholder="정답 입력">
+    </div>
+
+    <div class="q-card" id="card-q12">
+      <div class="q-text">12. 겨울에는 날씨가 많이 (춥다) ____________________________. [-어요]</div>
+      <input type="text" name="q12" placeholder="정답 입력">
+    </div>
+
+    <div class="q-card" id="card-q13">
+      <div class="q-text">13. 모르는 단어는 사전을 (찾다) ________________________ 보세요. [-어/아 보다]</div>
+      <input type="text" name="q13" placeholder="정답 입력">
+    </div>
+
+    <div class="q-card" id="card-q14">
+      <div class="q-text">14. 노래를 아주 잘 (부르다) ______________________________. [-어요]</div>
+      <input type="text" name="q14" placeholder="정답 입력">
+    </div>
+
+    <div class="q-card" id="card-q15">
+      <div class="q-text">15. 하늘이 파랗고 정말 (그렇다) ____________________________. [-어요]</div>
+      <input type="text" name="q15" placeholder="정답 입력">
+    </div>
+
+    <div class="direction">[16-20] 빈칸에 가장 알맞은 대화를 고르십시오. (각 3점)</div>
+
+    <div class="q-card" id="card-q16">
+      <div class="q-text">16. 가: 민수 씨는 주말에 보통 어디에 있어요? &nbsp;&nbsp; 나: 저는 주말에 보통 __________________.</div>
+      <div class="options">
+        <label><input type="radio" name="q16" value="1"> ① 집으로 쉬어요</label>
+        <label><input type="radio" name="q16" value="2"> ② 집에서 일해요</label>
+        <label><input type="radio" name="q16" value="3"> ③ 집에 일해요</label>
+        <label><input type="radio" name="q16" value="4"> ④ 집까지 있어요</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q17">
+      <div class="q-text">17. 가: 여기 미술관 안에서 사진을 찍어도 돼요? &nbsp;&nbsp; 나: 아니요, 사진을 __________________.</div>
+      <div class="options">
+        <label><input type="radio" name="q17" value="1"> ① 찍으세요</label>
+        <label><input type="radio" name="q17" value="2"> ② 찍고 싶어요</label>
+        <label><input type="radio" name="q17" value="3"> ③ 찍지 마세요</label>
+        <label><input type="radio" name="q17" value="4"> ④ 찍을 수 있어요</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q18">
+      <div class="q-text">18. 가: 비행기를 탈까요, 기차를 탈까요? &nbsp;&nbsp; 나: __________________ 더 빠르니까 비행기를 타세요.</div>
+      <div class="options">
+        <label><input type="radio" name="q18" value="1"> ① 비행기보다 기차가</label>
+        <label><input type="radio" name="q18" value="2"> ② 기차보다 비행기가</label>
+        <label><input type="radio" name="q18" value="3"> ③ 비행기하고 기차가</label>
+        <label><input type="radio" name="q18" value="4"> ④ 기차에서 비행기까지</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q19">
+      <div class="q-text">19. 가: 한국어를 얼마 동안 배웠어요? &nbsp;&nbsp; 나: 한국에 온 지 벌써 __________________.</div>
+      <div class="options">
+        <label><input type="radio" name="q19" value="1"> ① 3달이 되었어요</label>
+        <label><input type="radio" name="q19" value="2"> ② 3달 동안 되었어요</label>
+        <label><input type="radio" name="q19" value="3"> ③ 3달 전에 살았어요</label>
+        <label><input type="radio" name="q19" value="4"> ④ 3달부터 시작했어요</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q20">
+      <div class="q-text">20. 가: 수업 시간이 5분밖에 안 남았어요! &nbsp;&nbsp; 나: 늦었으니까 우리 __________________.</div>
+      <div class="options">
+        <label><input type="radio" name="q20" value="1"> ① 천천히 걸읍시다</label>
+        <label><input type="radio" name="q20" value="2"> ② 빨리 뛰지 맙시다</label>
+        <label><input type="radio" name="q20" value="3"> ③ 빨리 뜁시다</label>
+        <label><input type="radio" name="q20" value="4"> ④ 천천히 가세요</label>
+      </div>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="part-title">[Part 2] 읽기 (Reading Comprehension) - 60점</div>
+
+    <div class="passage">
+      제 친구 마이클 씨는 요리를 정말 잘합니다. 마이클 씨는 주말마다 시장에 가서 여러 가지 채소와 고기를 삽니다. 지난주 토요일에는 불고기를 만들었습니다. 고기를 볶기 전에 양념을 먼저 만들어야 합니다. 마이클 씨는 간장과 설탕, 배를 넣어서 맛있는 양념을 만들었습니다. 그리고 우리는 함께 맛있는 저녁을 먹었습니다. 다음 주말에는 마이클 씨가 비빔밥을 만들려고 합니다. 저도 마이클 씨에게 요리를 배우고 싶습니다.
+    </div>
+
+    <div class="q-card" id="card-q21">
+      <div class="q-text">21. 마이클 씨는 지난주 토요일에 무엇을 만들었습니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q21" value="1"> ① 비빔밥</label>
+        <label><input type="radio" name="q21" value="2"> ② 불고기</label>
+        <label><input type="radio" name="q21" value="3"> ③ 떡볶이</label>
+        <label><input type="radio" name="q21" value="4"> ④ 김치찌개</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q22">
+      <div class="q-text">22. 불고기를 만들 때 가장 먼저 한 일은 무엇입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q22" value="1"> ① 시장에서 과일을 샀습니다.</label>
+        <label><input type="radio" name="q22" value="2"> ② 친구에게 요리를 가르쳤습니다.</label>
+        <label><input type="radio" name="q22" value="3"> ③ 고기를 불에 볶았습니다.</label>
+        <label><input type="radio" name="q22" value="4"> ④ 양념을 만들었습니다.</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q23">
+      <div class="q-text">23. 이 글의 내용과 같은 것을 고르십시오. (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q23" value="1"> ① 마이클 씨는 다음 주에 불고기를 만들 것입니다.</label>
+        <label><input type="radio" name="q23" value="2"> ② 저는 마이클 씨와 함께 시장에 갔습니다.</label>
+        <label><input type="radio" name="q23" value="3"> ③ 마이클 씨는 요리 솜씨가 좋습니다.</label>
+        <label><input type="radio" name="q23" value="4"> ④ 저는 이미 요리를 다 배웠습니다.</label>
+      </div>
+    </div>
+
+    <div class="passage">
+      <b>수지:</b> 민수 씨, 방학에 무슨 계획이 있어요?<br>
+      <b>민수:</b> 저는 이번 방학 동안 제주도에 여행을 가려고 해요.<br>
+      <b>수지:</b> 비행기 표는 샀어요?<br>
+      <b>민수:</b> 네, 미리 예매했어요. 그런데 숙소를 아직 못 정했어요.<br>
+      <b>수지:</b> 제 동생이 다녀온 호텔이 아주 깨끗하고 좋았다고 했어요. 전화번호를 가르쳐 줄까요?<br>
+      <b>민수:</b> 네, 고마워요. 호텔 요금이 비싸지 않으면 거기서 머물고 싶어요.
+    </div>
+
+    <div class="q-card" id="card-q24">
+      <div class="q-text">24. 민수 씨는 방학 동안 무엇을 할 것입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q24" value="1"> ① 동생을 만날 것입니다.</label>
+        <label><input type="radio" name="q24" value="2"> ② 제주도 여행을 갈 것입니다.</label>
+        <label><input type="radio" name="q24" value="3"> ③ 비행기 표를 환불할 것입니다.</label>
+        <label><input type="radio" name="q24" value="4"> ④ 호텔을 예약해 줄 것입니다.</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q25">
+      <div class="q-text">25. 민수 씨가 아직 하지 못한 일은 무엇입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q25" value="1"> ① 여행 계획 세우기</label>
+        <label><input type="radio" name="q25" value="2"> ② 비행기 표 예매하기</label>
+        <label><input type="radio" name="q25" value="3"> ③ 호텔(숙소) 정하기</label>
+        <label><input type="radio" name="q25" value="4"> ④ 수지 씨와 약속하기</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q26">
+      <div class="q-text">26. 대화의 내용과 다른 것을 고르십시오. (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q26" value="1"> ① 수지 씨 동생은 제주도에 다녀왔습니다.</label>
+        <label><input type="radio" name="q26" value="2"> ② 수지 씨는 호텔 전화번호를 알고 있습니다.</label>
+        <label><input type="radio" name="q26" value="3"> ③ 민수 씨는 이미 비행기 표를 샀습니다.</label>
+        <label><input type="radio" name="q26" value="4"> ④ 민수 씨는 비싸더라도 그 호텔에 꼭 갈 것입니다.</label>
+      </div>
+    </div>
+
+    <div class="passage">
+      <b>[외국인 유학생 한국 문화 체험 안내]</b><br>
+      • 일시: 2026년 10월 15일 (토) 오전 9시 ~ 오후 5시<br>
+      • 장소: 전주 한옥마을<br>
+      • 참가비: 10,000원 (점심 식사 및 체험비 포함)<br>
+      • 준비물: 편한 옷과 운동화, 개인 물병<br>
+      • 신청 기간: 10월 1일 ~ 10월 8일까지 (인터넷 접수 가능)<br>
+      • 주의사항: 당일 8시 40분까지 학교 정문 버스 앞으로 모여 주십시오.
+    </div>
+
+    <div class="q-card" id="card-q27">
+      <div class="q-text">27. 이 행사는 언제 어디에서 열립니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q27" value="1"> ① 10월 1일, 학교 정문</label>
+        <label><input type="radio" name="q27" value="2"> ② 10월 8일, 국제교육원</label>
+        <label><input type="radio" name="q27" value="3"> ③ 10월 15일, 전주 한옥마을</label>
+        <label><input type="radio" name="q27" value="4"> ④ 10월 15일, 홈페이지</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q28">
+      <div class="q-text">28. 참가비 만 원에 포함되지 않은 것은 무엇입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q28" value="1"> ① 점심 식사</label>
+        <label><input type="radio" name="q28" value="2"> ② 체험 활동비</label>
+        <label><input type="radio" name="q28" value="3"> ③ 교통편(전용 버스)</label>
+        <label><input type="radio" name="q28" value="4"> ④ 개인 운동화 및 물병</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q29">
+      <div class="q-text">29. 안내문의 내용과 맞지 않는 것을 고르십시오. (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q29" value="1"> ① 10월 5일에 신청할 수 있습니다.</label>
+        <label><input type="radio" name="q29" value="2"> ② 인터넷 홈페이지로 신청할 수 있습니다.</label>
+        <label><input type="radio" name="q29" value="3"> ③ 당일 오전 9시까지 정문에 도착하면 됩니다.</label>
+        <label><input type="radio" name="q29" value="4"> ④ 행사 일정은 비가 오면 바뀔 수 있습니다.</label>
+      </div>
+    </div>
+
+    <div class="passage">
+      저는 한국에서 대학교에 다니는 유학생 왕웨이입니다. 한국에 처음 왔을 때는 한국어를 잘 못해서 힘들었습니다. 그렇지만 지금은 한국 친구들도 많이 사귀고 한국 생활에 익숙해졌습니다. 수업이 끝난 후에는 도서관에서 혼자 공부하거나 친구들과 카페에 갑니다. 주말에는 한국 음식을 먹으러 명동이나 홍대에 자주 갑니다. 한국 음식은 조금 맵지만 아주 맛있습니다. 방학이 되면 한국의 여러 도시를 기차로 여행해 보고 싶습니다.
+    </div>
+
+    <div class="q-card" id="card-q30">
+      <div class="q-text">30. 왕웨이 씨가 한국에 처음 왔을 때 힘들었던 이유는 무엇입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q30" value="1"> ① 음식이 너무 매워서</label>
+        <label><input type="radio" name="q30" value="2"> ② 친구가 너무 많아서</label>
+        <label><input type="radio" name="q30" value="3"> ③ 한국어를 잘하지 못해서</label>
+        <label><input type="radio" name="q30" value="4"> ④ 도서관이 멀어서</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q31">
+      <div class="q-text">31. 왕웨이 씨가 평소 수업 후에 하는 일이 아닌 것은 무엇입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q31" value="1"> ① 도서관에서 공부하기</label>
+        <label><input type="radio" name="q31" value="2"> ② 친구들과 카페 가기</label>
+        <label><input type="radio" name="q31" value="3"> ③ 기차로 다른 도시 여행하기</label>
+        <label><input type="radio" name="q31" value="4"> ④ 혼자 복습하기</label>
+      </div>
+    </div>
+
+    <div class="q-card" id="card-q32">
+      <div class="q-text">32. 이 글을 쓴 사람의 희망(바람)은 무엇입니까? (5점)</div>
+      <div class="options">
+        <label><input type="radio" name="q32" value="1"> ① 방학 때 기차 여행을 하는 것</label>
+        <label><input type="radio" name="q32" value="2"> ② 대학교를 빨리 졸업하는 것</label>
+        <label><input type="radio" name="q32" value="3"> ③ 한국 음식을 직접 요리하는 것</label>
+        <label><input type="radio" name="q32" value="4"> ④ 고향으로 돌아가는 것</label>
+      </div>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="part-title">[Part 3] 쓰기 (Writing) - 80점</div>
+    <div class="direction">[33-40] 빈칸 문장을 완성하십시오. (각 5점 - 정확한 띄어쓰기/어미 활용)</div>
+
+    <div class="q-card" id="card-q33">
+      <div class="q-text">33. 감기에 걸렸습니다. 그래서 오늘은 학교에 (가다 + -지 못하다 / 과거).</div>
+      <input type="text" name="q33" placeholder="예: 가지 못했습니다">
+    </div>
+
+    <div class="q-card" id="card-q34">
+      <div class="q-text">34. 지금 비가 많이 (오다 + -고 있다). 우산을 가지고 가세요.</div>
+      <input type="text" name="q34" placeholder="예: 오고 있습니다">
+    </div>
+
+    <div class="q-card" id="card-q35">
+      <div class="q-text">35. 시간이 (있다 + -(으)면) 이번 주말에 영화를 보러 갈까요?</div>
+      <input type="text" name="q35" placeholder="예: 있으면">
+    </div>
+
+    <div class="q-card" id="card-q36">
+      <div class="q-text">36. 한국어 수업을 (듣다 + -은 후에) 식당에서 점심을 먹었습니다.</div>
+      <input type="text" name="q36" placeho
